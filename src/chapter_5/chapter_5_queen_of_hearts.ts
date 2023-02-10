@@ -2,6 +2,7 @@ import { endAdventure } from '../..';
 import { wakeUp } from '../chapter_6/chapter_6_wake_up';
 import { askQuestion, clear, print } from '../ui/console';
 
+
 const VERDICTS = ['Guilty', 'Not Guilty'] as const;
 type Verdict = typeof VERDICTS[number];
 
@@ -16,7 +17,8 @@ export function meetTheQueen(): void {
 
 	let guilty: boolean = false;
 
-	let witnesses: Witness[] = []; // 👉 FIXME ❌ - call getWitnesses here
+	let witnesses = getWitnesses();
+	// let witnesses: Witness[] = []; // 👉 FIXME ❌ - call getWitnesses here
 
 	if (!witnesses || witnesses.length === 0) {
 		print(`No witnesses have come forward to defend you.`);
@@ -46,6 +48,7 @@ export function meetTheQueen(): void {
 }
 
 // 👉 FIXME ❌ - this function needs writing to meet the above criteria
-function getWitnesses(): any {
-	return [];
-}
+function getWitnesses() : Array<Witness> {
+	const witnessNames = ['The Mad Hatter', 'The March Hare', 'The Cheshire Cat','The White Rabbit'];
+	return witnessNames.map(n => { return { name: n, giveEvidence: () => 'Not Guilty',}});
+};
